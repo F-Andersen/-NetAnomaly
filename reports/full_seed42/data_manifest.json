@@ -1,0 +1,12 @@
+{
+  "source_sha256": "7bdbef286f8893f31c6db12105fa097fa5c2dcc6733179037a08129d150ea27a",
+  "sample_fraction": null,
+  "seed": 42,
+  "source_file": "GeneratedLabelledFlows.zip",
+  "data_mode": "full",
+  "split_sizes": {
+    "train": 529884,
+    "validation": 1130820,
+    "test": 1051645
+  }
+}

@@ -1,0 +1,86 @@
+name,group,unit,description,status,reason,model_inputs,train_median,train_min,train_max
+Protocol,protocol,номер IP-протоколу,Подається у модель двома бінарними ознаками: protocol_tcp (6) і protocol_udp (17),used,,protocol_tcp;protocol_udp,6.0,0.0,17.0
+Flow Duration,duration,мкс,Тривалість потоку,used,,Flow Duration,31303.0,-1.0,119999984.0
+Total Fwd Packets,volume,пакети,Кількість пакетів у прямому напрямку,used,,Total Fwd Packets,2.0,1.0,219759.0
+Total Backward Packets,volume,пакети,Кількість пакетів у зворотному напрямку,used,,Total Backward Packets,2.0,0.0,291922.0
+Total Length of Fwd Packets,volume,байти,Сумарний розмір пакетів у прямому напрямку,used,,Total Length of Fwd Packets,68.0,0.0,1323378.0
+Total Length of Bwd Packets,volume,байти,Сумарний розмір пакетів у зворотному напрямку,used,,Total Length of Bwd Packets,144.0,0.0,655453056.0
+Fwd Packet Length Max,packet_length,байти,Максимальний розмір пакета у прямому напрямку,used,,Fwd Packet Length Max,40.0,0.0,23360.0
+Fwd Packet Length Min,packet_length,байти,Мінімальний розмір пакета у прямому напрямку,used,,Fwd Packet Length Min,6.0,0.0,2293.0
+Fwd Packet Length Mean,packet_length,байти,Середній розмір пакета у прямому напрямку,used,,Fwd Packet Length Mean,38.0,0.0,4638.92333984375
+Fwd Packet Length Std,packet_length,байти,Стандартне відхилення розміру пакета у прямому напрямку,used,,Fwd Packet Length Std,0.0,0.0,7125.5966796875
+Bwd Packet Length Max,packet_length,байти,Максимальний розмір пакета у зворотному напрямку,used,,Bwd Packet Length Max,91.0,0.0,13140.0
+Bwd Packet Length Min,packet_length,байти,Мінімальний розмір пакета у зворотному напрямку,used,,Bwd Packet Length Min,6.0,0.0,2146.0
+Bwd Packet Length Mean,packet_length,байти,Середній розмір пакета у зворотному напрямку,used,,Bwd Packet Length Mean,81.0,0.0,2976.32177734375
+Bwd Packet Length Std,packet_length,байти,Стандартне відхилення розміру пакета у зворотному напрямку,used,,Bwd Packet Length Std,0.0,0.0,2728.55908203125
+Flow Bytes/s,rate,байт/с,Інтенсивність потоку в байтах за секунду,used,,Flow Bytes/s,5555.3291015625,-12000000.0,2071000064.0
+Flow Packets/s,rate,пакет/с,Інтенсивність потоку в пакетах за секунду,used,,Flow Packets/s,114.41740417480469,-2000000.0,3000000.0
+Flow IAT Mean,iat,мкс,Середній інтервал між пакетами потоку,used,,Flow IAT Mean,10786.83349609375,-1.0,119748208.0
+Flow IAT Std,iat,мкс,Стандартне відхилення інтервалу між пакетами потоку,used,,Flow IAT Std,121.82090759277344,0.0,84800264.0
+Flow IAT Max,iat,мкс,Максимальний інтервал між пакетами потоку,used,,Flow IAT Max,30899.0,-1.0,119999736.0
+Flow IAT Min,iat,мкс,Мінімальний інтервал між пакетами потоку,used,,Flow IAT Min,4.0,-14.0,119748208.0
+Fwd IAT Total,iat,мкс,Сума інтервалів між пакетами прямого напрямку,used,,Fwd IAT Total,4.0,0.0,119999984.0
+Fwd IAT Mean,iat,мкс,Середній інтервал між пакетами прямого напрямку,used,,Fwd IAT Mean,4.0,0.0,119987024.0
+Fwd IAT Std,iat,мкс,Стандартне відхилення інтервалу прямого напрямку,used,,Fwd IAT Std,0.0,0.0,84602928.0
+Fwd IAT Max,iat,мкс,Максимальний інтервал прямого напрямку,used,,Fwd IAT Max,4.0,0.0,119999872.0
+Fwd IAT Min,iat,мкс,Мінімальний інтервал прямого напрямку,used,,Fwd IAT Min,3.0,0.0,119987024.0
+Bwd IAT Total,iat,мкс,Сума інтервалів між пакетами зворотного напрямку,used,,Bwd IAT Total,3.0,0.0,119999640.0
+Bwd IAT Mean,iat,мкс,Середній інтервал між пакетами зворотного напрямку,used,,Bwd IAT Mean,3.0,0.0,119974144.0
+Bwd IAT Std,iat,мкс,Стандартне відхилення інтервалу зворотного напрямку,used,,Bwd IAT Std,0.0,0.0,84418016.0
+Bwd IAT Max,iat,мкс,Максимальний інтервал зворотного напрямку,used,,Bwd IAT Max,3.0,0.0,119974144.0
+Bwd IAT Min,iat,мкс,Мінімальний інтервал зворотного напрямку,used,,Bwd IAT Min,1.0,0.0,119974144.0
+Fwd PSH Flags,flags,кількість,Кількість прапорців PSH у прямому напрямку,used,,Fwd PSH Flags,0.0,0.0,1.0
+Bwd PSH Flags,flags,кількість,Кількість прапорців PSH у зворотному напрямку,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+Fwd URG Flags,flags,кількість,Кількість прапорців URG у прямому напрямку,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+Bwd URG Flags,flags,кількість,Кількість прапорців URG у зворотному напрямку,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+Fwd Header Length,header,байти,Сумарний розмір заголовків прямого напрямку,used,,Fwd Header Length,64.0,-1929350016.0,4644908.0
+Bwd Header Length,header,байти,Сумарний розмір заголовків зворотного напрямку,used,,Bwd Header Length,40.0,-167770496.0,5838440.0
+Fwd Packets/s,rate,пакет/с,Інтенсивність пакетів прямого напрямку,used,,Fwd Packets/s,63.19913864135742,0.0,3000000.0
+Bwd Packets/s,rate,пакет/с,Інтенсивність пакетів зворотного напрямку,used,,Bwd Packets/s,28.31803798675537,0.0,2000000.0
+Min Packet Length,packet_length,байти,Мінімальний розмір пакета потоку,used,,Min Packet Length,6.0,0.0,1359.0
+Max Packet Length,packet_length,байти,Максимальний розмір пакета потоку,used,,Max Packet Length,94.0,0.0,23360.0
+Packet Length Mean,packet_length,байти,Середній розмір пакета потоку,used,,Packet Length Mean,60.0,0.0,2456.0
+Packet Length Std,packet_length,байти,Стандартне відхилення розміру пакета потоку,used,,Packet Length Std,28.4815731048584,0.0,4414.54736328125
+Packet Length Variance,packet_length,байти²,Дисперсія розміру пакета потоку,used,,Packet Length Variance,811.2000122070312,0.0,19488226.0
+FIN Flag Count,flags,кількість,Кількість пакетів із прапорцем FIN,used,,FIN Flag Count,0.0,0.0,1.0
+SYN Flag Count,flags,кількість,Кількість пакетів із прапорцем SYN,used,,SYN Flag Count,0.0,0.0,1.0
+RST Flag Count,flags,кількість,Кількість пакетів із прапорцем RST,used,,RST Flag Count,0.0,0.0,1.0
+PSH Flag Count,flags,кількість,Кількість пакетів із прапорцем PSH,used,,PSH Flag Count,0.0,0.0,1.0
+ACK Flag Count,flags,кількість,Кількість пакетів із прапорцем ACK,used,,ACK Flag Count,0.0,0.0,1.0
+URG Flag Count,flags,кількість,Кількість пакетів із прапорцем URG,used,,URG Flag Count,0.0,0.0,1.0
+CWE Flag Count,flags,кількість,Кількість пакетів із прапорцем CWR,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+ECE Flag Count,flags,кількість,Кількість пакетів із прапорцем ECE,used,,ECE Flag Count,0.0,0.0,1.0
+Down/Up Ratio,rate,відношення,"Відношення кількості пакетів зворотного напрямку до прямого (за пакетами, не за байтами)",used,,Down/Up Ratio,1.0,0.0,108.0
+Average Packet Size,packet_length,байти,Середній розмір пакета,used,,Average Packet Size,75.75,0.0,3684.0
+Avg Fwd Segment Size,packet_length,байти,Середній розмір сегмента прямого напрямку,used,,Avg Fwd Segment Size,38.0,0.0,4638.92333984375
+Avg Bwd Segment Size,packet_length,байти,Середній розмір сегмента зворотного напрямку,used,,Avg Bwd Segment Size,81.0,0.0,2976.32177734375
+Fwd Avg Bytes/Bulk,bulk,байти,Середня кількість байтів у пакетному блоці прямого напрямку,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+Fwd Avg Packets/Bulk,bulk,пакети,Середня кількість пакетів у блоці прямого напрямку,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+Fwd Avg Bulk Rate,bulk,байт/с,Середня швидкість блоку прямого напрямку,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+Bwd Avg Bytes/Bulk,bulk,байти,Середня кількість байтів у блоці зворотного напрямку,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+Bwd Avg Packets/Bulk,bulk,пакети,Середня кількість пакетів у блоці зворотного напрямку,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+Bwd Avg Bulk Rate,bulk,байт/с,Середня швидкість блоку зворотного напрямку,dropped_constant_on_train,Стала на навчальній вибірці; вилучено автоматично,,0.0,0.0,0.0
+Subflow Fwd Packets,subflow,пакети,Середня кількість пакетів підпотоку прямого напрямку,used,,Subflow Fwd Packets,2.0,1.0,219759.0
+Subflow Fwd Bytes,subflow,байти,Середня кількість байтів підпотоку прямого напрямку,used,,Subflow Fwd Bytes,68.0,0.0,1323378.0
+Subflow Bwd Packets,subflow,пакети,Середня кількість пакетів підпотоку зворотного напрямку,used,,Subflow Bwd Packets,2.0,0.0,291922.0
+Subflow Bwd Bytes,subflow,байти,Середня кількість байтів підпотоку зворотного напрямку,used,,Subflow Bwd Bytes,144.0,0.0,655453056.0
+Init_Win_bytes_forward,tcp_window,байти,"Початкове вікно TCP прямого напрямку; -1 означає, що значення відсутнє",used,,Init_Win_bytes_forward,115.0,-1.0,65535.0
+Init_Win_bytes_backward,tcp_window,байти,"Початкове вікно TCP зворотного напрямку; -1 означає, що значення відсутнє",used,,Init_Win_bytes_backward,-1.0,-1.0,65535.0
+act_data_pkt_fwd,tcp_window,пакети,Кількість пакетів прямого напрямку з ненульовим TCP-корисним навантаженням,used,,act_data_pkt_fwd,1.0,0.0,213557.0
+min_seg_size_forward,tcp_window,байти,Мінімальний розмір сегмента прямого напрямку,used,,min_seg_size_forward,32.0,-83885312.0,126.0
+Active Mean,active_idle,мкс,Середній час активності потоку,used,,Active Mean,0.0,0.0,101659664.0
+Active Std,active_idle,мкс,Стандартне відхилення часу активності,used,,Active Std,0.0,0.0,64349504.0
+Active Max,active_idle,мкс,Максимальний час активності,used,,Active Max,0.0,0.0,101659664.0
+Active Min,active_idle,мкс,Мінімальний час активності,used,,Active Min,0.0,0.0,101659664.0
+Idle Mean,active_idle,мкс,Середній час простою потоку,used,,Idle Mean,0.0,0.0,119999736.0
+Idle Std,active_idle,мкс,Стандартне відхилення часу простою,used,,Idle Std,0.0,0.0,75145024.0
+Idle Max,active_idle,мкс,Максимальний час простою,used,,Idle Max,0.0,0.0,119999736.0
+Idle Min,active_idle,мкс,Мінімальний час простою,used,,Idle Min,0.0,0.0,119999736.0
+Flow ID,excluded,,,excluded,"Ідентифікатор потоку, похідний від IP та портів; не є поведінковою ознакою",,,,
+Source IP,excluded,,,excluded,Ідентифікатор конкретного вузла стенду; ризик запам'ятовування адрес атакувальників,,,,
+Destination IP,excluded,,,excluded,Ідентифікатор конкретного вузла стенду; ризик запам'ятовування адрес жертв,,,,
+Source Port,excluded,,,excluded,Ефемерний номер порту; числова величина не має порядкового змісту,,,,
+Destination Port,excluded,,,excluded,"Категоріальний номер сервісу; числова величина не має порядкового змісту, ризик прив'язки до портів стенду",,,,
+Timestamp,excluded,,,excluded,"Використовується для часу події, але не як ознака: час доби пов'язаний із розкладом атак у стенді",,,,
+Fwd Header Length.1,excluded,,,excluded,Точна копія Fwd Header Length (перевіряється під час завантаження),,,,
+Label,excluded,,,excluded,"Цільова мітка; використовується лише для поділу, вибору порога й оцінювання",,,,

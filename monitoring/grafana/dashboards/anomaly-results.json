@@ -1,0 +1,439 @@
+{
+  "uid": "netanomaly-results",
+  "title": "Аномалії мережевих потоків",
+  "tags": [
+    "netanomaly"
+  ],
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": false,
+  "timezone": "utc",
+  "time": {
+    "from": "2017-07-06T08:00:00.000Z",
+    "to": "2017-07-07T18:00:00.000Z"
+  },
+  "refresh": "",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Походження даних",
+      "type": "text",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 2
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "**Дані цього дашборду — відтворення записів CICIDS2017 із CSV через API.** Це історичний набір даних 2017 року, а не захоплення живого трафіку. Час подій — з набору даних."
+      }
+    },
+    {
+      "id": 2,
+      "title": "Оброблено записів",
+      "type": "stat",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 2,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT count(*) AS value FROM predictions WHERE model_version = '$model_version'",
+          "editorMode": "code"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 3,
+      "title": "Позначено аномаліями",
+      "type": "stat",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 2,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT count(*) AS value FROM predictions WHERE model_version = '$model_version' AND is_anomaly",
+          "editorMode": "code"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 4,
+      "title": "Частка аномалій",
+      "type": "stat",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 2,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT coalesce(avg(is_anomaly::int), 0) AS value FROM predictions WHERE model_version = '$model_version'",
+          "editorMode": "code"
+        }
+      ],
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 2
+        },
+        "overrides": []
+      }
+    },
+    {
+      "id": 5,
+      "title": "Модель і поріг",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 2,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT algorithm AS \"Алгоритм\", version AS \"Версія\", data_mode AS \"Режим\", round(threshold::numeric, 5) AS \"Поріг\" FROM model_versions WHERE version = '$model_version'",
+          "editorMode": "code"
+        }
+      ],
+      "options": {},
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 6,
+      "title": "Записи й аномалії за часом події (5 хв)",
+      "type": "timeseries",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 6,
+        "w": 24,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT $__timeGroupAlias(event_time, '5m'), count(*) AS \"Усього\", count(*) FILTER (WHERE is_anomaly) AS \"Аномалії\" FROM predictions WHERE $__timeFilter(event_time) AND model_version = '$model_version' GROUP BY 1 ORDER BY 1",
+          "editorMode": "code"
+        }
+      ],
+      "options": {},
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 7,
+      "title": "Розподіл оцінки аномальності (крок 0,1; 5.0 означає 5 і більше)",
+      "type": "barchart",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 14,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT to_char(least(floor(score * 10) / 10, 5.0), 'FM0.0') AS \"Оцінка\", count(*) AS \"Записів\" FROM predictions WHERE model_version = '$model_version' GROUP BY 1 ORDER BY 1",
+          "editorMode": "code"
+        }
+      ],
+      "options": {
+        "xField": "Оцінка",
+        "legend": {
+          "showLegend": false
+        }
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 8,
+      "title": "Відтворені записи за міткою набору",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 14,
+        "w": 12,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT coalesce(e.true_label, '(без мітки)') AS \"Мітка\", count(*) AS \"Записів\", count(*) FILTER (WHERE p.is_anomaly) AS \"Позначено\", round(avg(p.is_anomaly::int), 4) AS \"Частка позначених\" FROM predictions p JOIN flow_events e ON e.id = p.event_id WHERE p.model_version = '$model_version' GROUP BY 1 ORDER BY 2 DESC",
+          "editorMode": "code"
+        }
+      ],
+      "options": {},
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "description": "Демонстраційна підвибірка. Остаточні метрики див. у таблиці експерименту."
+    },
+    {
+      "id": 9,
+      "title": "Останні аномалії",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 22,
+        "w": 24,
+        "h": 9
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT p.id AS \"ID\", e.event_time AS \"Час події\", e.source AS \"Джерело\", e.src_ip AS \"Source IP\", e.dst_ip AS \"Destination IP\", e.dst_port AS \"Порт\", round(p.score::numeric, 4) AS \"Оцінка\", round(p.threshold::numeric, 4) AS \"Поріг\", e.true_label AS \"Мітка\" FROM predictions p JOIN flow_events e ON e.id = p.event_id WHERE p.is_anomaly AND p.model_version = '$model_version' ORDER BY p.id DESC LIMIT 50",
+          "editorMode": "code"
+        }
+      ],
+      "options": {},
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 10,
+      "title": "Експеримент: метрики на test",
+      "type": "table",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 31,
+        "w": 24,
+        "h": 7
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT run_id AS \"Запуск\", data_mode AS \"Режим\", model AS \"Модель\", round(precision::numeric, 4) AS \"Precision\", round(recall::numeric, 4) AS \"Recall\", round(f1::numeric, 4) AS \"F1\", round(pr_auc::numeric, 4) AS \"PR-AUC\", round(fpr::numeric, 4) AS \"FPR\", tp AS \"TP\", fp AS \"FP\", tn AS \"TN\", fn AS \"FN\", round(microseconds_per_record::numeric, 2) AS \"мкс/запис\" FROM experiment_metrics ORDER BY run_id, f1 DESC",
+          "editorMode": "code"
+        }
+      ],
+      "options": {},
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      }
+    },
+    {
+      "id": 11,
+      "title": "Експеримент: частка виявлених атак за типом",
+      "type": "barchart",
+      "datasource": {
+        "type": "postgres",
+        "uid": "netanomaly-postgres"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 38,
+        "w": 24,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "postgres",
+            "uid": "netanomaly-postgres"
+          },
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT label AS \"Мітка\", max(flagged_share) FILTER (WHERE model = 'robust_zscore_baseline') AS \"Статистичний поріг\", max(flagged_share) FILTER (WHERE model = 'isolation_forest') AS \"Isolation Forest\", max(flagged_share) FILTER (WHERE model = 'lof_novelty') AS \"LOF\" FROM experiment_per_attack WHERE run_id = (SELECT max(run_id) FROM experiment_metrics) GROUP BY 1 ORDER BY 1",
+          "editorMode": "code"
+        }
+      ],
+      "options": {
+        "xField": "Мітка",
+        "orientation": "horizontal",
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      },
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "min": 0,
+          "max": 1
+        },
+        "overrides": []
+      },
+      "description": "Для BENIGN значення дорівнює частці хибних спрацювань."
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "model_version",
+        "label": "Версія моделі",
+        "type": "query",
+        "datasource": {
+          "type": "postgres",
+          "uid": "netanomaly-postgres"
+        },
+        "query": "SELECT version FROM model_versions ORDER BY (version = (SELECT model_version FROM predictions ORDER BY id DESC LIMIT 1)) IS TRUE DESC, registered_at DESC",
+        "refresh": 1,
+        "includeAll": false,
+        "multi": false,
+        "sort": 0
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  }
+}

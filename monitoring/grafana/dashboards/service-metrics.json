@@ -1,0 +1,262 @@
+{
+  "uid": "netanomaly-service",
+  "title": "Сервіс прогнозування: технічні метрики",
+  "tags": [
+    "netanomaly"
+  ],
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": false,
+  "timezone": "utc",
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "refresh": "10s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Стан API (up)",
+      "type": "stat",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "netanomaly-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 4,
+        "h": 6
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "netanomaly-prometheus"
+          },
+          "expr": "up{job=\"netanomaly-api\"}",
+          "legendFormat": "up"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 2,
+      "title": "Запити за секунду",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "netanomaly-prometheus"
+      },
+      "gridPos": {
+        "x": 4,
+        "y": 0,
+        "w": 10,
+        "h": 6
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "netanomaly-prometheus"
+          },
+          "expr": "sum by (path) (rate(netanomaly_http_requests_total[1m]))",
+          "legendFormat": "{{path}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "reqps",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 3,
+      "title": "Тривалість запиту p95",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "netanomaly-prometheus"
+      },
+      "gridPos": {
+        "x": 14,
+        "y": 0,
+        "w": 10,
+        "h": 6
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "netanomaly-prometheus"
+          },
+          "expr": "histogram_quantile(0.95, sum by (le, path) (rate(netanomaly_http_request_duration_seconds_bucket[1m])))",
+          "legendFormat": "{{path}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 4,
+      "title": "Прогнозів за секунду за рішенням",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "netanomaly-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 6,
+        "w": 12,
+        "h": 7
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "netanomaly-prometheus"
+          },
+          "expr": "sum by (decision) (rate(netanomaly_predictions_total[1m]))",
+          "legendFormat": "{{decision}}"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ops",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 5,
+      "title": "Час препроцесингу й оцінювання p95",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "netanomaly-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 6,
+        "w": 12,
+        "h": 7
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "netanomaly-prometheus"
+          },
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(netanomaly_model_inference_seconds_bucket[1m])))",
+          "legendFormat": "p95"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 6,
+      "title": "Середній розмір пакета запитів",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "netanomaly-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 13,
+        "w": 12,
+        "h": 7
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "netanomaly-prometheus"
+          },
+          "expr": "sum(rate(netanomaly_predict_batch_size_sum[1m])) / sum(rate(netanomaly_predict_batch_size_count[1m]))",
+          "legendFormat": "records/request"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    },
+    {
+      "id": 7,
+      "title": "Помилки запису до БД",
+      "type": "timeseries",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "netanomaly-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 13,
+        "w": 12,
+        "h": 7
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "netanomaly-prometheus"
+          },
+          "expr": "sum(netanomaly_db_write_errors_total) or vector(0)",
+          "legendFormat": "errors"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0
+        },
+        "overrides": []
+      },
+      "options": {}
+    }
+  ],
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  }
+}

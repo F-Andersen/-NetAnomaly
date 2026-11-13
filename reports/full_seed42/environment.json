@@ -1,0 +1,8 @@
+{
+  "python": "3.12.13",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.41",
+  "cpu_count": 12,
+  "numpy": "2.2.6",
+  "pandas": "2.3.3",
+  "scikit_learn": "1.7.2"
+}

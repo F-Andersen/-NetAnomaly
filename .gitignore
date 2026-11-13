@@ -1,0 +1,22 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Dataset archives, prepared data and trained models
+/*.zip
+data/raw/
+data/processed/
+artifacts/
+
+# Working documents and internal notes
+дока/
+docs/IMPLEMENTATION_HANDOFF.md
+
+# Python and editor output
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/

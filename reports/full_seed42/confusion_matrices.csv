@@ -1,0 +1,4 @@
+model,tn,fp,fn,tp
+robust_zscore_baseline,746470,15008,270680,19487
+isolation_forest,687769,73709,242152,48015
+lof_novelty,658772,102706,141204,148963

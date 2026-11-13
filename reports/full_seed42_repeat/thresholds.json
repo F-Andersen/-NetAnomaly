@@ -1,0 +1,26 @@
+{
+  "robust_zscore_baseline": {
+    "threshold": 18.00667953491211,
+    "validation_precision": 0.9220635042866677,
+    "validation_recall": 0.539878337911004,
+    "validation_f1": 0.6810149320226836,
+    "validation_fpr": 0.014045772216780217,
+    "rule": "max_f1_on_validation"
+  },
+  "isolation_forest": {
+    "threshold": 0.5632401430179131,
+    "validation_precision": 0.7140761445515506,
+    "validation_recall": 0.5797698264492931,
+    "validation_f1": 0.6399522225632264,
+    "validation_fpr": 0.07145475804147926,
+    "rule": "max_f1_on_validation"
+  },
+  "lof_novelty": {
+    "threshold": 2.142165422439575,
+    "validation_precision": 0.6246136538918753,
+    "validation_recall": 0.809432381353162,
+    "validation_f1": 0.7051133713556283,
+    "validation_fpr": 0.14973290480910123,
+    "rule": "max_f1_on_validation"
+  }
+}

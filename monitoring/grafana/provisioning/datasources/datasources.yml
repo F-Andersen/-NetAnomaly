@@ -1,0 +1,25 @@
+apiVersion: 1
+
+datasources:
+  - name: PostgreSQL
+    uid: netanomaly-postgres
+    type: postgres
+    access: proxy
+    url: postgres:5432
+    user: $POSTGRES_USER
+    isDefault: true
+    jsonData:
+      database: $POSTGRES_DB
+      sslmode: disable
+      postgresVersion: 1600
+      timescaledb: false
+    secureJsonData:
+      password: $POSTGRES_PASSWORD
+
+  - name: Prometheus
+    uid: netanomaly-prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    jsonData:
+      timeInterval: 5s

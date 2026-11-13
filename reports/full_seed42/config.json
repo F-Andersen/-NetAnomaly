@@ -1,0 +1,14 @@
+{
+  "run_id": "full_seed42",
+  "seed": 42,
+  "sample_fraction": null,
+  "lof_train_size": 100000,
+  "lof_n_neighbors": 20,
+  "if_n_estimators": 200,
+  "if_max_samples": 256,
+  "data_root": "data",
+  "artifacts_root": "artifacts",
+  "reports_root": "reports",
+  "extra": {},
+  "data_mode": "full"
+}

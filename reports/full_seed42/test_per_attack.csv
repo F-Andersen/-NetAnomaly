@@ -1,0 +1,25 @@
+model,label,n,flagged,flagged_share
+robust_zscore_baseline,BENIGN,761478,15008,0.019709039525764367
+robust_zscore_baseline,Bot,1944,0,0.0
+robust_zscore_baseline,DDoS,128027,19416,0.1516555101658244
+robust_zscore_baseline,Infiltration,36,4,0.1111111111111111
+robust_zscore_baseline,PortScan,157980,67,0.0004241043170021522
+robust_zscore_baseline,Web Attack - Brute Force,1507,0,0.0
+robust_zscore_baseline,Web Attack - Sql Injection,21,0,0.0
+robust_zscore_baseline,Web Attack - XSS,652,0,0.0
+isolation_forest,BENIGN,761478,73709,0.09679728107706329
+isolation_forest,Bot,1944,534,0.27469135802469136
+isolation_forest,DDoS,128027,47033,0.3673678208502894
+isolation_forest,Infiltration,36,32,0.8888888888888888
+isolation_forest,PortScan,157980,328,0.0020762121787568045
+isolation_forest,Web Attack - Brute Force,1507,72,0.047777040477770406
+isolation_forest,Web Attack - Sql Injection,21,0,0.0
+isolation_forest,Web Attack - XSS,652,16,0.024539877300613498
+lof_novelty,BENIGN,761478,102706,0.13487717307656952
+lof_novelty,Bot,1944,519,0.26697530864197533
+lof_novelty,DDoS,128027,72396,0.565474470228936
+lof_novelty,Infiltration,36,11,0.3055555555555556
+lof_novelty,PortScan,157980,74214,0.4697683251044436
+lof_novelty,Web Attack - Brute Force,1507,1215,0.8062375580623756
+lof_novelty,Web Attack - Sql Injection,21,0,0.0
+lof_novelty,Web Attack - XSS,652,608,0.9325153374233128

@@ -1,0 +1,18 @@
+split,label,n
+train,BENIGN,529884
+validation,BENIGN,864673
+validation,DoS GoldenEye,10293
+validation,DoS Hulk,230713
+validation,DoS Slowhttptest,5499
+validation,DoS slowloris,5796
+validation,FTP-Patator,7938
+validation,Heartbleed,11
+validation,SSH-Patator,5897
+test,BENIGN,761478
+test,Bot,1944
+test,DDoS,128027
+test,Infiltration,36
+test,PortScan,157980
+test,Web Attack - Brute Force,1507
+test,Web Attack - Sql Injection,21
+test,Web Attack - XSS,652
